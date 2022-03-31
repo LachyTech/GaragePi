@@ -164,8 +164,9 @@ class GaragePiController:
             # Relay triggers on low so just setting as output will trigger
             # and closing will switch back.
             GPIO.setup(app.config['RELAY_PIN'], GPIO.OUT)
+            GPIO.output(app.config['RELAY_PIN'], GPIO.HIGH)
             time.sleep(0.5)
-            GPIO.setup(app.config['RELAY_PIN'], GPIO.IN)
+            GPIO.output(app.config['RELAY_PIN'], GPIO.LOW)
 
     def check_door_open_for_warning(self):
         if self.__door_state and app.warning_event is not None:
